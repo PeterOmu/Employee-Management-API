@@ -1,0 +1,1077 @@
+{
+  "info": {
+    "_postman_id": "091005a0-5e44-4bb9-acf6-6531c4356b52",
+    "name": "ERP",
+    "description": "# Employee Management API - Postman Collection\n**Capstone Project Documentation**\nThis document describes the complete Postman collection used to test the Employee Management REST API.\n- **Base URL**: `http://localhost:8080`\n- **Authentication**: \n  - **GET** endpoints → Public (no authentication required)\n  - **POST, PUT, PATCH, DELETE** → Basic Auth  \n    Username: `admin`  \n    Password: `admin123`\n---\n## Employee Endpoints\n### 1. Create Employee (POST)\n**Endpoint**: `POST {{base_url}}/api/employees`\n**Request Body** (JSON):\n```json\n{\n  \"firstName\": \"Ade\",\n  \"lastName\": \"Balogun\",\n  \"email\": \"ade.balogun@company.com\",\n  \"phoneNumber\": \"08012345678\",\n  \"position\": \"Software Engineer\",\n  \"salary\": 850000.00,\n  \"hireDate\": \"2025-03-01\",\n  \"departmentId\": 1\n}\n\n ```\n\n**Expected Status**: `201 Created`\n\n---\n\n### 2\\. List All Employees (GET) - with Pagination & Sorting\n\n**Endpoint**: `GET {{base_url}}/api/employees?page=0&size=10&sort=firstName,asc`\n\n**Query Parameters**:\n\n- `page` → Page number (0-based)\n    \n- `size` → Page size\n    \n- `sort` → Sorting field and direction (e.g., `firstName,asc` or `salary,desc`)\n    \n\n**Expected Status**: `200 OK`\n\n---\n\n### 3\\. Filter Employees by Department (GET)\n\n**Endpoint**: `GET {{base_url}}/api/employees?dept=1&page=0&size=5`\n\n**Query Parameters**:\n\n- `dept` → Department ID (bonus feature)\n    \n- `page` & `size` → Pagination\n    \n\n**Expected Status**: `200 OK`\n\n---\n\n### 4\\. Get Employee by ID (GET)\n\n**Endpoint**: `GET {{base_url}}/api/employees/{id}`\n\nExample: `GET {{base_url}}/api/employees/1`\n\n**Expected Status**: `200 OK` or `404 Not Found`\n\n---\n\n### 5\\. Update Employee - Full Update (PUT)\n\n**Endpoint**: `PUT {{base_url}}/api/employees/{id}`\n\n**Request Body** (JSON):\n\n``` json\n{\n  \"firstName\": \"Adeolu\",\n  \"lastName\": \"Balogun\",\n  \"email\": \"adeolu.b@company.com\",\n  \"phoneNumber\": \"08012345678\",\n  \"position\": \"Senior Software Engineer\",\n  \"salary\": 950000.00,\n  \"hireDate\": \"2025-03-01\",\n  \"departmentId\": 1\n}\n\n ```\n\n**Expected Status**: `200 OK`\n\n---\n\n### 6\\. Partial Update (PATCH)\n\n**Endpoint**: `PATCH {{base_url}}/api/employees/{id}`\n\n**Request Body** (JSON - only fields to update):\n\n``` json\n{\n  \"position\": \"Lead Software Engineer\",\n  \"salary\": 1050000.00\n}\n\n ```\n\n**Expected Status**: `200 OK`\n\n---\n\n### 7\\. Delete Employee (DELETE)\n\n**Endpoint**: `DELETE {{base_url}}/api/employees/{id}`\n\nExample: `DELETE {{base_url}}/api/employees/1`\n\n**Expected Status**: `204 No Content`\n\nJust let me know how you'd like to enhance it!",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52695185",
+    "_collection_link": "https://go.postman.co/collection/52695185-091005a0-5e44-4bb9-acf6-6531c4356b52?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get EmployeeByID",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/employees/8",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "employees",
+            "8"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Get EmployeeByID",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/employees/8",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "employees",
+                "8"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 31 Mar 2026 08:06:00 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": 8,\n    \"firstName\": \"Ade\",\n    \"lastName\": \"Balogun\",\n    \"email\": \"ade.balogun@company.com\",\n    \"phoneNumber\": \"08012345678\",\n    \"position\": \"Software Engineer\",\n    \"salary\": 850000,\n    \"hireDate\": \"2025-03-01\",\n    \"department\": {\n        \"id\": 1,\n        \"name\": \"Engineering\",\n        \"description\": \"Software & Hardware Development\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Create Employee",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"firstName\": \"Ade\",\r\n  \"lastName\": \"Balogun\",\r\n  \"email\": \"ade.balogun@company.com\",\r\n  \"phoneNumber\": \"08012345678\",\r\n  \"position\": \"Software Engineer\",\r\n  \"salary\": 850000.00,\r\n  \"hireDate\": \"2025-03-01\",\r\n  \"departmentId\": 1\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/employees",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "employees"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Create Employee",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"firstName\": \"Ade\",\r\n  \"lastName\": \"Balogun\",\r\n  \"email\": \"ade.balogun@company.com\",\r\n  \"phoneNumber\": \"08012345678\",\r\n  \"position\": \"Software Engineer\",\r\n  \"salary\": 850000.00,\r\n  \"hireDate\": \"2025-03-01\",\r\n  \"departmentId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/employees",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "employees"
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 31 Mar 2026 07:58:03 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": 8,\n    \"firstName\": \"Ade\",\n    \"lastName\": \"Balogun\",\n    \"email\": \"ade.balogun@company.com\",\n    \"phoneNumber\": \"08012345678\",\n    \"position\": \"Software Engineer\",\n    \"salary\": 850000,\n    \"hireDate\": \"2025-03-01\",\n    \"department\": {\n        \"id\": 1,\n        \"name\": \"Engineering\",\n        \"description\": \"Software & Hardware Development\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Health Check",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/health",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "health"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Health Check",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/health",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "health"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "106"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 31 Mar 2026 06:22:01 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"status\": \"UP\",\n    \"service\": \"erp\",\n    \"timestamp\": \"2026-03-31T06:22:01.636367Z\",\n    \"ip\": \"172.23.21.151\",\n    \"port\": 8080\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get All Employees",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/employees",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "employees"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Get All Employees",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/employees",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "employees"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "1111"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 31 Mar 2026 07:41:47 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"content\": [\n        {\n            \"id\": 1,\n            \"firstName\": \"John\",\n            \"lastName\": \"Doe\",\n            \"email\": \"john.doe@company.com\",\n            \"phoneNumber\": \"08012345678\",\n            \"position\": \"Software Engineer\",\n            \"salary\": 850000,\n            \"hireDate\": \"2024-01-15\",\n            \"department\": {\n                \"id\": 1,\n                \"name\": \"Engineering\",\n                \"description\": \"Software & Hardware Development\"\n            }\n        },\n        {\n            \"id\": 2,\n            \"firstName\": \"Jane\",\n            \"lastName\": \"Smith\",\n            \"email\": \"jane.smith@company.com\",\n            \"phoneNumber\": \"08098765432\",\n            \"position\": \"Marketing Manager\",\n            \"salary\": 650000,\n            \"hireDate\": \"2023-11-01\",\n            \"department\": {\n                \"id\": 2,\n                \"name\": \"Marketing\",\n                \"description\": \"Brand & Digital Marketing\"\n            }\n        },\n        {\n            \"id\": 3,\n            \"firstName\": \"Mike\",\n            \"lastName\": \"Johnson\",\n            \"email\": \"mike.j@company.com\",\n            \"phoneNumber\": \"08123456789\",\n            \"position\": \"HR Specialist\",\n            \"salary\": 450000,\n            \"hireDate\": \"2025-02-10\",\n            \"department\": {\n                \"id\": 3,\n                \"name\": \"HR\",\n                \"description\": \"Human Resources & Talent Management\"\n            }\n        }\n    ],\n    \"empty\": false,\n    \"first\": true,\n    \"last\": true,\n    \"number\": 0,\n    \"numberOfElements\": 3,\n    \"pageable\": {\n        \"offset\": 0,\n        \"pageNumber\": 0,\n        \"pageSize\": 20,\n        \"paged\": true,\n        \"sort\": {\n            \"empty\": true,\n            \"sorted\": false,\n            \"unsorted\": true\n        },\n        \"unpaged\": false\n    },\n    \"size\": 20,\n    \"sort\": {\n        \"empty\": true,\n        \"sorted\": false,\n        \"unsorted\": true\n    },\n    \"totalElements\": 3,\n    \"totalPages\": 1\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get All Departments",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/departments",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "departments"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Get All Departments",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/departments",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "departments"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "355"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 31 Mar 2026 08:10:22 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Engineering\",\n        \"description\": \"Software & Hardware Development\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Marketing\",\n        \"description\": \"Brand & Digital Marketing\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"HR\",\n        \"description\": \"Human Resources & Talent Management\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"IT\",\n        \"description\": \"Technology Department\"\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Finance\",\n        \"description\": \"Finance & Accounting Department\"\n    }\n]"
+        }
+      ]
+    },
+    {
+      "name": "Get DeptByID",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/departments/4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "departments",
+            "4"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Get DeptByID",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/departments/4",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "departments",
+                "4"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "58"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 31 Mar 2026 08:11:39 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": 4,\n    \"name\": \"IT\",\n    \"description\": \"Technology Department\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Create Department",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Operations\",\r\n    \"description\": \"Operations & Talent Management\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/departments",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "departments"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Create Department",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Operations\",\r\n    \"description\": \"Operations & Talent Management\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/departments",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "departments"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "76"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 31 Mar 2026 08:13:50 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": 13,\n    \"name\": \"Operations\",\n    \"description\": \"Operations & Talent Management\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Update Dept",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"IT\",\r\n    \"description\": \"Technology Department UPDATED\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/departments/4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "departments",
+            "4"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Update Dept",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"IT\",\r\n    \"description\": \"Technology Department UPDATED\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/departments/4",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "departments",
+                "4"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "66"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 31 Mar 2026 08:28:19 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": 4,\n    \"name\": \"IT\",\n    \"description\": \"Technology Department UPDATED\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Update Employee",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"firstName\": \"Ade (UPDATED)\",\r\n  \"lastName\": \"Balogun\",\r\n  \"email\": \"ade.balogun@company.com\",\r\n  \"phoneNumber\": \"08012345678\",\r\n  \"position\": \"Software Engineer\",\r\n  \"salary\": 850000.00,\r\n  \"departmentId\": 2\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/employees/8",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "employees",
+            "8"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Update Employee",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"firstName\": \"Ade (UPDATED)\",\r\n  \"lastName\": \"Balogun\",\r\n  \"email\": \"ade.balogun@company.com\",\r\n  \"phoneNumber\": \"08012345678\",\r\n  \"position\": \"Software Engineer\",\r\n  \"salary\": 850000.00,\r\n  \"departmentId\": 2\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/employees/8",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "employees",
+                "8"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "276"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 31 Mar 2026 08:35:50 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": 8,\n    \"firstName\": \"Ade (UPDATED)\",\n    \"lastName\": \"Balogun\",\n    \"email\": \"ade.balogun@company.com\",\n    \"phoneNumber\": \"08012345678\",\n    \"position\": \"Software Engineer\",\n    \"salary\": 850000,\n    \"hireDate\": \"2025-03-01\",\n    \"department\": {\n        \"id\": 2,\n        \"name\": \"Marketing\",\n        \"description\": \"Brand & Digital Marketing\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Delete Employee [ERROR]",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/employees/3",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "employees",
+            "3"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Delete Employee [ERROR]",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/employees/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "employees",
+                "3"
+              ]
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 31 Mar 2026 08:37:16 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"details\": null,\n    \"message\": \"Employee not found\",\n    \"status\": 404,\n    \"timestamp\": \"2026-03-31T09:37:16.7991088\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Delete Employee [SUCCESS]",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/employees/3",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "employees",
+            "3"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
