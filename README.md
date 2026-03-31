@@ -132,13 +132,19 @@ volumes:
 
 ## **Running the Application**
 
-1. **Start Docker containers**:
+1. **Clone the repository**:
+
+```bash 
+  git clone https://github.com/PeterOmu/Employee-Management-API.git
+  ```
+
+2. **Start Docker containers**:
 
 ```bash
 docker-compose up -d
 ```
 
-2. **Build and run Spring Boot app**:
+3. **Build and run Spring Boot app**:
 
 ```bash
 mvn clean install
